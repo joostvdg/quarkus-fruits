@@ -8,7 +8,15 @@ image:
   pullPolicy: IfNotPresent
 
 # define environment variables here as a map of key: value
+# Secrets that get loaded via the (jx) environment from Vault
+secrets:
+  sql_password: ""
+  sql_connection: ""
+  sqlsa: ""
+
+# define environment variables here as a map of key: value
 env:
+  GOOGLE_SQL_USER: vault:quarkus-fruits:GOOGLE_SQL_USER
 
 # enable this flag to use knative serve to deploy the app
 knativeDeploy: false
