@@ -70,13 +70,13 @@ readinessProbePath: /health/ready
 livenessProbe:
   initialDelaySeconds: 60
   periodSeconds: 10
-  successThreshold: 1
-  timeoutSeconds: 1
+  successThreshold: 3
+  timeoutSeconds: 10
 readinessProbe:
-  failureThreshold: 1
+  failureThreshold: 3
   periodSeconds: 10
-  successThreshold: 1
-  timeoutSeconds: 1
+  successThreshold: 3
+  timeoutSeconds: 10
 
 
 # custom ingress annotations on this service
