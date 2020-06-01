@@ -44,8 +44,8 @@ spec:
           value: {{ quote $pval }}
 {{- end }}
         envFrom:
-          - secretRef:
-              name: {{ template "fullname" . }}-sql-secret
+        - secretRef:
+            name: {{ template "fullname" . }}-sql-secret
 {{ toYaml .Values.envFrom | indent 10 }}
         ports:
         - containerPort: {{ .Values.service.internalPort }}
