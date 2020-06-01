@@ -18,7 +18,7 @@
 -- USE `fruits`;
 
 --
--- Table structure for table `Fruit`
+-- Table structure for table `fruit`
 --
 
 DROP TABLE IF EXISTS `fruit`;
