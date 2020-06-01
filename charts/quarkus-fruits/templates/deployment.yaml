@@ -36,9 +36,6 @@ spec:
             mountPath: /secrets/cloudsql
             readOnly: true
       - name: {{ .Chart.Name }}
-        envFrom:
-          - secretRef:
-              name: {{ template "fullname" . }}-sql-secret
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         env:
