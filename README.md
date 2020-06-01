@@ -4,7 +4,7 @@
 
 To compile and run this demo you will need:
 
-- JDK 1.8+
+- JDK 1.11+
 - GraalVM
 
 In addition, you will need either a PostgreSQL database, or Docker to run one.
