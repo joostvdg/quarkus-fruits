@@ -13,10 +13,6 @@ secrets:
   sql_connection: ""
   sqlsa: ""
 
-envFrom:
-  - secretRef:
-      name: {{ template "fullname" . }}-sql-secret
-
 # define environment variables here as a map of key: value
 env:
   GOOGLE_SQL_USER: vault:quarkus-fruits:GOOGLE_SQL_USER
