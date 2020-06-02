@@ -27,3 +27,5 @@ COPY target/*-runner.jar /deployments/app.jar
 
 EXPOSE 8080
 USER 1001
+
+ENTRYPOINT [ "/deployments/run-java.sh" ]
