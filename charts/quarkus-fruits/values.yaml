@@ -13,7 +13,6 @@ secrets:
   sql_password: ""
   sql_connection: ""
   sqlsa: ""
-  sentry_dsn: vault:quarkus-fruits:SENTRY_DSN
 
 # define environment variables here as a map of key: value
 env:
