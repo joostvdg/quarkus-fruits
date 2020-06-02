@@ -1,14 +1,13 @@
 package com.github.joostvdg.demo.jx.quarkusfruits;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Table(name = "fruit")
 @Entity
 public class Fruit {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;

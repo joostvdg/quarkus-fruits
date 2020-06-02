@@ -26,6 +26,15 @@ spec:
 {{- end }}
     spec:
       containers:
+      - name: cloudsql-proxy
+        image: gcr.io/cloudsql-docker/gce-proxy:1.16
+        command: ["/cloud_sql_proxy",
+                  "-instances={{.Values.secrets.sql_connection}}=tcp:3306",
+                  "-credential_file=/secrets/cloudsql/credentials.json"]
+        volumeMounts:
+          - name: cloudsql-instance-credentials
+            mountPath: /secrets/cloudsql
+            readOnly: true
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
@@ -35,7 +44,8 @@ spec:
           value: {{ quote $pval }}
 {{- end }}
         envFrom:
-{{ toYaml .Values.envFrom | indent 10 }}
+        - secretRef:
+            name: {{ template "fullname" . }}-sql-secret
         ports:
         - containerPort: {{ .Values.service.internalPort }}
         livenessProbe:
@@ -57,3 +67,7 @@ spec:
 {{ toYaml .Values.resources | indent 12 }}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
 {{- end }}
+      volumes:
+        - name: cloudsql-instance-credentials
+          secret:
+            secretName: {{ template "fullname" . }}-sql-sa
