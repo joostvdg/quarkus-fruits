@@ -1,1 +1,44 @@
-buildPack: maven-java11
+buildPack:  maven-java11
+pipelineConfig:
+  pipelines:
+    overrides:
+      - pipeline: pullRequest
+        stage: build
+        name: mvn-install
+        steps:
+          - name: mvn-deploy
+            command: mvn clean package -Pnative --show-version -DskipDocs
+            image: caladreas/jx-builder-graalvm-maven-jdk11:v0.9.0
+        containerOptions:
+          env:
+            - name: _JAVA_OPTIONS
+              value: >-
+                -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCI -XX:+UseJVMCICompiler
+                -Xms8g -Xmx8g -XX:+PrintCommandLineFlags -XX:+UseSerialGC
+          resources:
+            requests:
+              cpu: "2"
+              memory: 10Gi
+            limits:
+              cpu: "2"
+              memory: 10Gi
+      - pipeline: release
+        stage: build
+        name: mvn-deploy
+        steps:
+          - name: mvn-deploy
+            command: mvn clean package -Pnative --show-version -DskipDocs
+            image: caladreas/jx-builder-graalvm-maven-jdk11:v0.9.0
+        containerOptions:
+          env:
+            - name: _JAVA_OPTIONS
+              value: >-
+                -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCI -XX:+UseJVMCICompiler
+                -Xms8g -Xmx8g -XX:+PrintCommandLineFlags -XX:+UseSerialGC
+          resources:
+            requests:
+              cpu: "2"
+              memory: 10Gi
+            limits:
+              cpu: "2"
+              memory: 10Gi
