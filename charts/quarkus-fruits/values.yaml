@@ -13,6 +13,7 @@ secrets:
   sql_password: ""
   sql_connection: ""
   sqlsa: ""
+  sentry_dsn: vault:quarkus-fruits:SENTRY_DSN
 
 # define environment variables here as a map of key: value
 env:
@@ -66,8 +67,8 @@ resources:
   requests:
     cpu: 400m
     memory: 512Mi
-livenessProbePath: /health
-readinessProbePath: /health
+livenessProbePath: /health/live
+readinessProbePath: /health/ready
 livenessProbe:
   initialDelaySeconds: 60
   periodSeconds: 10

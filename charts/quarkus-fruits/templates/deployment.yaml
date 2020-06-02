@@ -46,6 +46,8 @@ spec:
         envFrom:
         - secretRef:
             name: {{ template "fullname" . }}-sql-secret
+        - secretRef:
+            name: {{ template "fullname" . }}-sentry-dsn
         ports:
         - containerPort: {{ .Values.service.internalPort }}
         livenessProbe:
