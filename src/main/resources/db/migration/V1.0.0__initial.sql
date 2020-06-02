@@ -1,3 +1,11 @@
+-- SET MODE MYSQL; /* another h2 way to set mode */
+
+-- MySQL dump 10.13  Distrib 5.7.25, for Linux (x86_64)
+--
+-- Host: localhost    Database: fruits
+-- ------------------------------------------------------
+-- Server version	5.7.25-google-log
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -18,7 +26,7 @@
 -- USE `fruits`;
 
 --
--- Table structure for table `fruit`
+-- Table structure for table `Fruit`
 --
 
 DROP TABLE IF EXISTS `fruit`;
