@@ -12,7 +12,7 @@ pipelineConfig:
         containerOptions:
           envFrom:
             - secretRef:
-                name: my-sonar-token
+                name: quarkus-fruits-sonar
         step:
           name: sonar
           command: mvn
