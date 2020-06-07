@@ -18,6 +18,7 @@ pipelineConfig:
             - -Dsonar.host.url=$SONAR_HOST_URL
             - -Dsonar.projectKey=$SONAR_PROJECT_KEY
             - -Dsonar.organization=$SONAR_ORG
+            - -Dsonar.login=$SONAR_API_TOKEN
             - -e
             - --show-version
             - -DskipTests=true
