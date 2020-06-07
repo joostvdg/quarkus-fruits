@@ -4,6 +4,8 @@ pipelineConfig:
     envFrom:
       - secretRef:
           name: quarkus-fruits-sonar
+      - secretRef:
+          name: quarkus-fruits-ossindex
   pipelines:
     overrides:
       - name: mvn-deploy
@@ -22,6 +24,20 @@ pipelineConfig:
             - -e
             - --show-version
             - -DskipTests=true
+        type: after
+      - name: sonar
+        stage: build
+        step:
+          name: sonatype-ossindex
+          command: mvn
+          args:
+            - org.sonatype.ossindex.maven:ossindex-maven-plugin:audit
+            - -f
+            - pom.xml
+            - -Dossindex.scope=compile
+            - -Dossindex.reportFile=ossindex.json
+            - -Dossindex.cvssScoreThreshold=4.0
+            - -Dossindex.fail=false
         type: after
       - pipeline: pullRequest
         stage: build
