@@ -1,7 +1,31 @@
 buildPack:  maven-java11
 pipelineConfig:
+  containerOptions:
+    envFrom:
+      - secretRef:
+          name: quarkus-fruits-sonar
   pipelines:
     overrides:
+      - name: mvn-deploy
+        pipeline: release
+        stage: build
+        containerOptions:
+          envFrom:
+            - secretRef:
+                name: my-sonar-token
+        step:
+          name: sonar
+          command: mvn
+          args:
+            - compile
+            - org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar
+            - -Dsonar.host.url=$SONAR_HOST_URL
+            - -Dsonar.projectKey=$SONAR_PROJECT_KEY
+            - -Dsonar.organization=$SONAR_ORG
+            - -e
+            - --show-version
+            - -DskipTests=true
+        type: after
       - pipeline: pullRequest
         stage: build
         name: mvn-install
