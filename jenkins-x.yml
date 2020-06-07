@@ -9,10 +9,6 @@ pipelineConfig:
       - name: mvn-deploy
         pipeline: release
         stage: build
-        containerOptions:
-          envFrom:
-            - secretRef:
-                name: quarkus-fruits-sonar
         step:
           name: sonar
           command: mvn
