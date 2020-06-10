@@ -8,6 +8,21 @@ pipelineConfig:
           name: quarkus-fruits-ossindex
   pipelines:
     overrides:
+      - name: jx-preview
+        stage: promote
+        pipeline: pullRequest
+        step:
+          name: postman-tests
+          dir: /workspace/source
+          image: postman/newman
+          command: newman
+          args:
+            - run
+            - postman-suite-01.json
+            - --global-var
+            - "baseUrl=http://quarkus-fruits.jx-joostvdg-quarkus-fruits-pr-${PULL_NUMBER}.jxgke.kearos.net
+            - --verbose
+        type: after
       - name: mvn-deploy
         pipeline: release
         stage: build
