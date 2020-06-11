@@ -1,5 +1,7 @@
 # Quarkus demo: Using Spring Data and JPA
 
+Test 2.
+
 ## Requirements
 
 To compile and run this demo you will need:

@@ -1,6 +1,7 @@
 package com.github.joostvdg.demo.jx.quarkusfruits;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +25,7 @@ public class FruitResource {
         var it = fruitRepository.findAll();
         List<Fruit> fruits = new ArrayList<Fruit>();
         it.forEach(fruits::add);
+        fruits.sort(Comparator.comparing(Fruit::getId));
         return fruits;
     }
 
