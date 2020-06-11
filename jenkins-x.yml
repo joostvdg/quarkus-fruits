@@ -20,7 +20,7 @@ pipelineConfig:
             - run
             - postman-suite-01.json
             - --global-var
-            - "baseUrl=http://quarkus-fruits.jx-joostvdg-quarkus-fruits-pr-${PULL_NUMBER}.jxgke.kearos.net"
+            - "baseUrl=http://quarkus-fruits.jx-joostvdg-quarkus-fruits-pr-${PULL_NUMBER}.dev.jxgke.kearos.net"
             - --verbose
         type: after
       - name: mvn-deploy
