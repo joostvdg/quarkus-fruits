@@ -13,9 +13,13 @@ import javax.ws.rs.Produces;
 
 import org.springframework.web.bind.annotation.*;
 
+import org.jboss.logging.Logger;
+
 @RestController
 @RequestMapping(value = "/fruits")
 public class FruitResource {
+
+    private static final Logger LOG = Logger.getLogger(FruitResource.class);
 
     private final FruitRepository fruitRepository;
 
@@ -32,6 +36,7 @@ public class FruitResource {
         List<Fruit> fruits = new ArrayList<Fruit>();
         it.forEach(fruits::add);
         fruits.sort(Comparator.comparing(Fruit::getId));
+        LOG.infof("Found {} fruits", fruits.size());
         return fruits;
     }
 
