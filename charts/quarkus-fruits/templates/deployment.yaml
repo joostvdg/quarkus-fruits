@@ -22,12 +22,12 @@ spec:
         app: {{ template "fullname" . }}
 {{- if .Values.podAnnotations }}
       annotations:
+        prometheus.io/port: "8080"
+        prometheus.io/scrape: "true"
 {{ toYaml .Values.podAnnotations | indent 8 }}
 {{- end }}
     spec:
       containers:
-        prometheus.io/port: "8080"
-        prometheus.io/scrape: "true"
 {{ if eq .Values.cloudsql.enabled "true" }}
       - name: cloudsql-proxy
         image: gcr.io/cloudsql-docker/gce-proxy:1.16
