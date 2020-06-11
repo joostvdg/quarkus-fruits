@@ -26,6 +26,8 @@ spec:
 {{- end }}
     spec:
       containers:
+        prometheus.io/port: "8080"
+        prometheus.io/scrape: "true"
 {{ if eq .Values.cloudsql.enabled "true" }}
       - name: cloudsql-proxy
         image: gcr.io/cloudsql-docker/gce-proxy:1.16
